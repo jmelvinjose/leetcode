@@ -18,6 +18,13 @@ public class PrintUtils {
 
   public static void printLinkedList(ListNode root) {
 
+    if (root == null) {
+      return;
+    }
+    if (root.next == null) {
+      System.out.println(root.val);
+      return;
+    }
     while(root.next.next != null) {
       System.out.print(root.val + " --> ");
       root = root.next;
