@@ -7,58 +7,39 @@
  */
 public class FirstMissingPositive {
 
+  public int split(int[] A) {
+    int low = -1;
+    int high = A.length;
+
+    for (int i = 0; i < high;) {
+      if (A[i] > 0) {
+        swap(A, i, ++low);
+        i++;
+      } else {
+        swap(A, i, --high);
+      }
+    }
+    return low + 1;
+  }
 
   public int firstMissingPositive(int[] A) {
+    int n = split(A);
 
-    if (A.length == 1) {
-      if (A[0] == 1) {
-        return 2;
-      } else {
-        return 1;
-      }
-    }
-
-    print(A);
-    // swap all negative numbers to the end
-    for (int i =0; i < A.length; i++) {
-      if (A[i] <=  0) {
-        int j = i+1;
-        while (j < A.length && A[j] <= 0) {
-          j++;
-        }
-        if (j < A.length) {
-          swap(A, i, j);
+    for (int i = 0; i < n; i++) {
+      if (Math.abs(A[i]) <= n) {
+        int index = Math.abs(A[i]) - 1;
+        if (A[index] > 0) {
+          A[index] = - A[index];
         }
       }
     }
-    print(A);
-    int stop = 0;
-    for (int i=0; i < A.length && A[i] > 0; i++) {
-      stop++;
-    }
 
-    // process now
-    for (int i=0; i< stop; i++) {
-      int index = Math.abs(A[i]);
-
-      if (index < A.length) {
-        if (A[index] <= 0) {
-          continue;
-        }
-        A[index] = -1 * A[index];
-      } else if (index > A.length){
-        return index-1;
-      }
-    }
-    print(A);
-    // return now
-    for (int i=1; i< A.length; i++) {
+    for (int i = 0; i < n; i++) {
       if (A[i] > 0) {
-        return i-1;
+        return i+1;
       }
     }
-
-    return stop+1;
+    return n+1;
   }
 
   void print(int[] A) {
