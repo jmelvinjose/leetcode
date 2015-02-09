@@ -25,11 +25,11 @@ public class PrintUtils {
       System.out.println(root.val);
       return;
     }
-    while(root.next.next != null) {
+    while(root.next != null) {
       System.out.print(root.val + " --> ");
       root = root.next;
     }
-    System.out.println(root.next.val);
+    System.out.println(root.val);
   }
 
 }
