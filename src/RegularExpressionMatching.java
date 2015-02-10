@@ -52,14 +52,13 @@ public class RegularExpressionMatching {
 
       if (isEqual(s[index1], p[index2])) {
         res = (char) Math.max(res, isMatchSolve(index1+1, index2));
-
-        res = (char) Math.max(res, isMatchSolve(index1+1, index2+1));
       }
     } else {
       if (isEqual(s[index1], p[index2])) {
         res = (char) Math.max(res, isMatchSolve(index1+1, index2+1));
       }
     }
+    dp[index1][index2] = res;
     return res;
   }
 
